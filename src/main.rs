@@ -1,6 +1,6 @@
 extern crate ffmpeg_next as ffmpeg;
 use clap::Parser;
-use glasses::{frameconv::ff::get_frames, window::app::App};
+use glasses::{frameconv::fileinfo::get_stream_info, window::app::App};
 use winit::event_loop::EventLoop;
 
 #[derive(Parser, Debug)]
@@ -14,11 +14,7 @@ fn main() {
     ffmpeg::init().unwrap();
     let args = Args::parse();
 
-    let frame_arr = get_frames(args.path).unwrap();
-
-    for (k, v) in frame_arr {
-        println!("Frame: {}, packetSize: {}", k, v);
-    }
+    let frame_arr = get_stream_info(args.path).unwrap();
 
     let event_loop = EventLoop::new().unwrap();
     let mut app = App::default();

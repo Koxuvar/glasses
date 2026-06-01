@@ -1,2 +1,2 @@
-pub mod ff;
+pub mod fileinfo;
 pub mod filetypes;
