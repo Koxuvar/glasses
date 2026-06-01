@@ -1,11 +1,16 @@
 extern crate ffmpeg_next as ffmpeg;
 use ffmpeg::{format::input, media::Type};
-use std::{collections::HashMap, env};
+use std::{collections::HashMap, path::Path};
 
-pub fn get_frames() -> Result<HashMap<usize, usize>, ffmpeg::Error> {
+pub fn get_frames(path: String) -> Result<HashMap<usize, usize>, ffmpeg::Error> {
+    let file_path: &Path = Path::new(&path);
+    if !file_path.exists() {
+        return Err(ffmpeg::Error::Other { errno: 2 });
+    }
+
     ffmpeg::init().unwrap();
 
-    let mut ictx = input(&env::args().nth(1).expect("Cant open file"))?;
+    let mut ictx = input(&file_path)?;
     let stream = ictx
         .streams()
         .best(Type::Video)
