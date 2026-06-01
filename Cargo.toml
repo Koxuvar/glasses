@@ -1,0 +1,10 @@
+[package]
+name = "glasses"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+ffmpeg-next = "8.1.0"
+wgpu = "22"
+winit = "0.30"
+pollster = "0.3"
