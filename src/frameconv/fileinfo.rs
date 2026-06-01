@@ -29,7 +29,7 @@ pub fn get_stream_info(path: String) -> Result<StreamInfo, ffmpeg::Error> {
             0x35706168 => VideoVariant::HAPALPHA,
             0x59706168 => VideoVariant::HAPQ,
             0x434C544E => VideoVariant::NOTCHLC,
-            _ => VideoVariant::None,
+            _ => VideoVariant::UNKOWN,
         },
     };
 

@@ -4,13 +4,32 @@ use winit::{
     window::Window,
 };
 
-#[derive(Default)]
+use crate::frameconv::filetypes::StreamInfo;
+
 pub struct App {
-    window: Option<Arc<Window>>,
-    device: Option<wgpu::Device>,
-    queue: Option<wgpu::Queue>,
-    surface: Option<wgpu::Surface<'static>>,
-    config: Option<wgpu::SurfaceConfiguration>,
+    pub stream_info: Option<StreamInfo>,
+    pub window: Option<Arc<Window>>,
+    pub device: Option<wgpu::Device>,
+    pub queue: Option<wgpu::Queue>,
+    pub surface: Option<wgpu::Surface<'static>>,
+    pub config: Option<wgpu::SurfaceConfiguration>,
+    pub render_pipeline: Option<wgpu::RenderPipeline>,
+    pub texture_bind_group: Option<wgpu::BindGroup>,
+}
+
+impl App {
+    pub fn new(stream_info: StreamInfo) -> Self {
+        Self {
+            stream_info: Some(stream_info),
+            window: None,
+            device: None,
+            queue: None,
+            surface: None,
+            config: None,
+            render_pipeline: None,
+            texture_bind_group: None,
+        }
+    }
 }
 
 impl ApplicationHandler for App {
